@@ -3,7 +3,7 @@ const h : number = window.innerHeight
 const parts : number = 4 
 const scGap : number = 0.02 / parts 
 const strokeFactor : number = 90 
-const sizeFactor : number = 5.8 
+const sizeFactor : number = 12.9
 const delay : number = 20
 const rot : number = Math.PI / 2 
 const colors : Array<string> = [
@@ -13,7 +13,7 @@ const colors : Array<string> = [
     "#3F51B5",
     "#FF5722"
 ] 
-const backColor : string = "#FF5722"
+const backColor : string = "#bdbdbd"
 const rFactor : number = 9.6 
 
 class ScaleUtil {
@@ -53,13 +53,14 @@ class DrawingUtil {
         const sf2 : number = ScaleUtil.divideScale(sf, 1, parts)
         const sf3 : number = ScaleUtil.divideScale(sf, 2, parts)
         const gap : number = h * 0.5 - w * 0.5
+        const pivot : number = -(w / 2 + gap * sf3)
         context.save()
         context.translate(w / 2, h / 2)
         context.rotate(rot * sf3)
         for (var j = 0; j < 2; j++) {
             context.save()
             context.scale(1 - 2 * j, 1)
-            DrawingUtil.drawLine(context, 0, 0, -w / 2 + w * 0.5 * sf1 + gap * sf3, 0)
+            DrawingUtil.drawLine(context, pivot, 0, pivot + w * 0.5 * sf1 + gap * sf3, 0)
             context.restore()
         }
         DrawingUtil.drawCircle(context, 0, 0, r * sf2)
