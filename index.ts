@@ -215,3 +215,25 @@ class LineFromEdgeCircle {
         this.curr.startUpdating(cb)
     }
 }
+
+class Renderer {
+
+    lfec : LineFromEdgeCircle = new LineFromEdgeCircle()
+    animator : Animator = new Animator()
+
+    render(context : CanvasRenderingContext2D) {
+        this.lfec.draw(context)
+    }
+
+    handleTap(cb : Function) {
+        this.lfec.startUpdating(() => {
+            this.animator.start(() => {
+                cb()
+                this.lfec.update(() => {
+                    this.animator.stop()
+                    cb()
+                })
+            })
+        })
+    }
+}
