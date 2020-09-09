@@ -6,6 +6,14 @@ const strokeFactor : number = 90
 const sizeFactor : number = 5.8 
 const delay : number = 20
 const rot : number = Math.PI / 2 
+const colors : Array<string> = [
+    "#4CAF50", 
+    "#F44336",
+    "#03A9F4",
+    "#3F51B5",
+    "#FF5722"
+] 
+const backColor : string = "#FF5722"
 
 class ScaleUtil {
 
